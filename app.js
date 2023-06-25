@@ -47,22 +47,25 @@ export default class Sketch{
   addObjects () {
     this.geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 )
 
-    this.material = new THREE.ShaderMaterial({
-      fragmentShader: fragment,
-      vertexShader: vertex
-    })
+    // this.material = new THREE.ShaderMaterial({
+    //   fragmentShader: fragment,
+    //   vertexShader: vertex
+    // })
+
+    this.material = new THREE.MeshNormalMaterial()
 
     this.mesh = new THREE.Mesh( this.geometry, this.material )
     this.scene.add( this.mesh )
   }
 
   render () {
-    this.mesh.rotation.x = this.time / 2000
-    this.mesh.rotation.y = this.time / 1000
+    this.mesh.rotation.x = this.time / 2
+    this.mesh.rotation.y = this.time / 1
   
     this.renderer.render( this.scene, this.camera )
 
     this.time+=0.05
+    console.log(this.time)
     window.requestAnimationFrame(this.render.bind(this))
   }
 }
